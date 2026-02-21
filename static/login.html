@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Dark Web Monitor</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="login-page">
+    <header>
+        <h1>Dark Web Credential and Data Breach Monitoring Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <div class="card auth-card">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #58a6ff;">Login</h2>
+                <form id="loginForm">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #8b949e;">Email</label>
+                        <input type="email" id="email" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #8b949e;">Password</label>
+                        <input type="password" id="password" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <button type="submit" class="btn"
+                        style="width: 100%; padding: 1rem; font-size: 1.1rem;">Login</button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: #8b949e;">
+                        Don't have an account? <a href="register.html" style="color: #58a6ff;">Register</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert(data.error || 'Login failed');
+                }
+            } catch (err) {
+                alert('Error connecting to server');
+            }
+        });
+    </script>
+</body>
+
+</html>

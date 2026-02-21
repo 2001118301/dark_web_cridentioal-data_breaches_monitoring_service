@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Dark Web Monitor</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="register-page">
+    <header>
+        <h1>Dark Web Credential and Data Breach Monitoring Service</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <div class="card auth-card">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: #58a6ff;">Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #8b949e;">Name</label>
+                        <input type="text" id="name" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #8b949e;">Email</label>
+                        <input type="email" id="email" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: #8b949e;">Password</label>
+                        <input type="password" id="password" required style="width: 100%; box-sizing: border-box;">
+                    </div>
+                    <button type="submit" class="btn"
+                        style="width: 100%; padding: 1rem; font-size: 1.1rem;">Register</button>
+                    <p style="text-align: center; margin-top: 1.5rem; color: #8b949e;">
+                        Already have an account? <a href="login.html" style="color: #58a6ff;">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    // Auto-login after successful registration
+                    try {
+                        const loginRes = await fetch('/api/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+
+                        const loginData = await loginRes.json();
+
+                        if (loginRes.ok) {
+                            localStorage.setItem('token', loginData.token);
+                            localStorage.setItem('user', JSON.stringify(loginData.user));
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            // Fallback if login fails for some reason
+                            alert('Registration successful! Please login.');
+                            window.location.href = 'login.html';
+                        }
+                    } catch (loginErr) {
+                        alert('Registration successful! Please login.');
+                        window.location.href = 'login.html';
+                    }
+                } else {
+                    alert(data.error || 'Registration failed');
+                }
+            } catch (err) {
+                alert('Error connecting to server');
+            }
+        });
+    </script>
+</body>
+
+</html>

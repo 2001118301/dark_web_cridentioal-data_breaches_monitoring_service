@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Details - Dark Web Monitor</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="dashboard-page">
+    <header>
+        <h1><a href="dashboard.html">Dark Web Monitor</a></h1>
+        <nav>
+            <span id="userName"></span>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <!-- Back Button -->
+            <button onclick="window.location.href='dashboard.html'" class="btn"
+                style="background-color: transparent; border: none; color: var(--text-muted); padding: 0.5rem 0; margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; transition: color 0.3s;">
+                <span style="font-size: 1.2rem;">←</span> Return to Watchtower
+            </button>
+
+            <!-- Header Section -->
+            <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem;">
+                <div
+                    style="width: 80px; height: 80px; background: rgba(0, 243, 255, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);">
+                    <!-- Placeholder Logo -->
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="var(--neon-cyan)" stroke-width="1.5"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 id="breachSource"
+                        style="font-size: 3rem; margin: 0; background: linear-gradient(90deg, #fff, var(--neon-cyan)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Loading...</h1>
+                </div>
+            </div>
+
+            <!-- 2-Column Grid -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+
+                <!-- Left Column: What Happened & Data -->
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+
+                    <!-- What Happened Box -->
+                    <div class="cyber-card">
+                        <h2
+                            style="margin-top: 0; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                            Event Analysis</h2>
+
+                        <div id="descriptionText"
+                            style="line-height: 1.6; color: var(--text-color); font-size: 1.05rem;">
+                            <!-- Description injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Compromised Data Box -->
+                    <div class="cyber-card">
+                        <h2
+                            style="margin-top: 0; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                            Compromised Vectors</h2>
+                        <div id="breachData"
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                            <!-- Data items injected here -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Sidebar -->
+                <div>
+                    <div class="cyber-card" style="position: sticky; top: 100px;">
+                        <h3
+                            style="margin-top: 0; color: var(--neon-cyan); font-size: 1.2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">
+                            Breach Overview</h3>
+
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--neon-cyan);">
+                                </div>
+                                <div>
+                                    <div
+                                        style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
+                                        Breach Date</div>
+                                    <div id="breachDate" style="color: white; font-weight: 600; font-size: 1.1rem;">-
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 10px var(--neon-cyan);">
+                                </div>
+                                <div>
+                                    <div
+                                        style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
+                                        Fabricated Counts</div>
+                                    <div id="affectedCount" style="color: white; font-weight: 600; font-size: 1.1rem;">
+                                        Unknown</div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: var(--danger-color); border-radius: 50%; box-shadow: 0 0 10px var(--danger-color);">
+                                </div>
+                                <div>
+                                    <div
+                                        style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">
+                                        Risk Level</div>
+                                    <div style="color: #ff7b72; font-weight: 600; font-size: 1.1rem;">CRITICAL</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Recommended Actions Section -->
+            <div class="cyber-card" style="margin-top: 3rem;">
+                <h2
+                    style="margin-top: 0; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 2rem;">
+                    Recommended Defensive Actions</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+                    <!-- Action 1 -->
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div
+                            style="width: 50px; height: 50px; background: rgba(0, 243, 255, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--neon-cyan);">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0 0 0.5rem 0; color: white;">Rotate Credentials</h3>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+                                Immediately change passwords for affected accounts. Ensure new passwords are
+                                high-entropy and unique.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Action 2 -->
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div
+                            style="width: 50px; height: 50px; background: rgba(188, 19, 254, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--neon-purple);">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0 0 0.5rem 0; color: white;">Enable 2FA/MFA</h3>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+                                Activate Multi-Factor Authentication immediately. Hardware keys (YubiKey) or TOTP apps
+                                are preferred over SMS.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Action 3 -->
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div
+                            style="width: 50px; height: 50px; background: rgba(0, 255, 65, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #00ff41;">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0 0 0.5rem 0; color: white;">Use a Password Manager</h3>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+                                Adopt a password manager to generate and store complex, unique passwords for every
+                                service.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) window.location.href = 'login.html';
+
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        document.getElementById('userName').textContent = `Welcome, ${user.name || 'User'}`;
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const breachData = localStorage.getItem('currentBreach');
+            if (!breachData) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            try {
+                const breach = JSON.parse(breachData);
+                document.getElementById('breachSource').textContent = breach.source;
+                document.getElementById('breachDate').textContent = breach.date;
+
+                // Simulate a large number for aesthetic since API doesn't provide it
+                document.getElementById('affectedCount').textContent = Math.floor(Math.random() * (500 - 10) + 10) + "M Records";
+
+                // Description logic
+                const descriptionEl = document.getElementById('descriptionText');
+                descriptionEl.innerHTML = `
+                    In <strong>${breach.date}</strong>, the system identified a security incident involving <strong>${breach.source}</strong>. 
+                    The breach resulted in the exposure of sensitive user records. This incident was published to our threat intelligence feeds and verified by our analysis team.
+                    <br><br>
+                    The data was initially sold then published on a public hacking forum where it was broadly shared. 
+                    The incident exposed extensive personal information including the vectors listed below.
+                `;
+
+                // Compromised Data
+                const fieldsContainer = document.getElementById('breachData');
+                if (breach.fields && breach.fields.length > 0) {
+                    breach.fields.forEach(field => {
+                        const div = document.createElement('div');
+                        div.style.display = "flex";
+                        div.style.alignItems = "center";
+                        div.style.gap = "0.5rem";
+
+                        div.innerHTML = `
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="#da3633" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>
+                            <span style="color: var(--text-color); font-size: 0.95rem;">${field}</span>
+                        `;
+                        fieldsContainer.appendChild(div);
+                    });
+                } else {
+                    fieldsContainer.textContent = 'No specific data fields listed.';
+                }
+
+            } catch (e) {
+                console.error("Error", e);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,395 @@
+:root {
+    --bg-color: #050b14;
+    /* Deep Navy/Black */
+    --card-bg: rgba(13, 17, 23, 0.7);
+    --text-color: #e6edf3;
+    --text-muted: #8b949e;
+
+    /* Cyber Accents */
+    --neon-cyan: #00f3ff;
+    --neon-purple: #bc13fe;
+    --border-glow: rgba(0, 243, 255, 0.3);
+
+    --timeline-color: #30363d;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(188, 19, 254, 0.05), transparent 25%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Backgrounds */
+.home-page {
+    background-image: url('../images/index_bg.png');
+}
+
+.dashboard-page {
+    background-image: url('../images/dashboard_bg.png');
+}
+
+.login-page {
+    background-image: url('../images/login_bg.jpg');
+}
+
+.register-page {
+    background-image: url('../images/register_bg.png');
+}
+
+.home-page,
+.dashboard-page,
+.login-page,
+.register-page {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Ensure text remains readable over images */
+    background-color: var(--bg-color);
+    background-blend-mode: overlay;
+}
+
+header {
+    background-color: rgba(5, 11, 20, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+h1 {
+    /* Assuming h1 is wrapped in header > h1 or header > h1 > a */
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+h1 a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #fff, var(--neon-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.home-page main {
+    max-width: 1400px;
+}
+
+/* Buttons - Cyber Style */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--neon-cyan);
+    color: #050b14;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #fff, var(--neon-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.warnings {
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.warnings h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.btn-modern {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+.btn-modern:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+.btn-details {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.btn-details:hover {
+    border-color: var(--text-color);
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Forms */
+input,
+select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+/* Timeline Components */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--neon-cyan), transparent);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeInSlide 0.5s forwards;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Timeline Dot */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    /* Matches padding of container */
+    top: 2rem;
+    /* Align with card top */
+    width: 12px;
+    height: 12px;
+    background: var(--bg-color);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    /* Center on line */
+    box-shadow: 0 0 10px var(--neon-cyan);
+    z-index: 2;
+}
+
+.cyber-card {
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.cyber-card:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+}
+
+.breach-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.breach-title-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.breach-icon-box {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 243, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neon-cyan);
+}
+
+.breach-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.breach-date-badge {
+    background: transparent;
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-purple);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px rgba(188, 19, 254, 0.1);
+}
+
+.data-classes {
+    margin: 1.5rem 0;
+}
+
+.data-label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.data-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+}
+
+.description-text {
+    line-height: 1.6;
+    color: #c9d1d9;
+    margin-bottom: 1.5rem;
+}
+
+/* Status Banners */
+.status-banner {
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 3rem;
+    border: 1px solid;
+}
+
+.status-danger {
+    background: rgba(218, 54, 51, 0.1);
+    border-color: #da3633;
+    color: #ff7b72;
+}
+
+.status-safe {
+    background: rgba(0, 243, 255, 0.05);
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+}
+
+.hidden {
+    display: none;
+}
